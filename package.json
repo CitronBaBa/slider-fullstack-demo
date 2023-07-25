@@ -1,0 +1,28 @@
+{
+  "name": "fullstack-demo",
+  "version": "1.0.0",
+  "author": "cwang",
+  "description": "Fullstack app with Nest + React",
+  "directories": {
+    "doc": "docs"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "references": [
+    {
+      "path": "packages/domain"
+    }
+  ],
+  "scripts": {
+    "generate:version": "./scripts/generate_version.sh",
+    "start:domain": "yarn workspace @fullstack-demo/domain start:dev",
+    "start:common": "yarn start:domain",
+    "build:domain": "yarn workspace @fullstack-demo/domain build",
+    "build:common": "yarn build:domain",
+    "build-push:server": "PACKAGE=server ./scripts/build_and_push.sh",
+    "build-push:client": "PACKAGE=client ./scripts/build_and_push.sh",
+    "lint": "yarn workspaces run lint"
+  }
+}
