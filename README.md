@@ -95,6 +95,7 @@ _For Server_
 
 1. Add standard logging
 2. Add more tests
+3. Better type gymnastics with generic component
 
 _For Client_
 

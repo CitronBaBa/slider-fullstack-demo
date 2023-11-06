@@ -108,6 +108,7 @@ export const SliderEditor = observer((): ReactElement => {
                 Background Image: {targetSlide.backgroundImage.name}
               </label>
 
+              {/* TODO replace this with a custom interface and dummy html file input */}
               <input
                 type="file"
                 accept="image/*"

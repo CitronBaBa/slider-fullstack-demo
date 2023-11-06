@@ -20,14 +20,6 @@ export type Component<T extends string, DataT> = {
 };
 
 export type GeneralComponent = Component<string, unknown>;
-export type GeneralComponentPartial = Omit<
-  GeneralComponent,
-  'id' | 'createdAt' | 'updatedAt'
-> & {
-  id?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
 
 export type SliderImage = {
   name: string;
@@ -48,6 +40,15 @@ export type Slider = Component<
     items: SliderItem[];
   }
 >;
+
+export type GeneralComponentPartial = Omit<
+  GeneralComponent,
+  'id' | 'createdAt' | 'updatedAt'
+> & {
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};
 
 export type SliderPartial = Omit<Slider, 'id' | 'createdAt' | 'updatedAt'> & {
   id?: string;
