@@ -6,7 +6,6 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import axios, { AxiosError } from 'axios';
 import { BizException } from './util/util.exception';
 
 export type StandardErrorResponse = {
@@ -55,7 +54,8 @@ export class RootExceptionFilter implements ExceptionFilter {
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
-    this.printException(exception);
+    console.error('RootExceptionFilter:', exception);
+
     const httpStatusCode =
       exception instanceof HttpException
         ? exception.getStatus()
@@ -77,18 +77,5 @@ export class RootExceptionFilter implements ExceptionFilter {
       JSON.stringify(responseBody),
       httpStatusCode
     );
-  }
-
-  private printException(exception: unknown): void {
-    if (axios.isAxiosError(exception)) {
-      const axiosError = exception as AxiosError;
-      console.error(
-        'RootExceptionFilter-AxioError:',
-        axiosError.toJSON(),
-        axiosError.response?.data
-      );
-      return;
-    }
-    console.error('RootExceptionFilter:', exception);
   }
 }

@@ -27,11 +27,12 @@ class UIStateStore {
     this.targetSlideIndex = index;
   }
 
-  async saveSliderEdit(): Promise<void> {
+  saveSliderEdit = async (): Promise<void> => {
     if (this.targetSlider) {
       await sliderStore.updateDebounced(this.targetSlider.id);
     }
-  }
+  };
+
   setTargetSlideIndex(v: number): void {
     this.targetSlideIndex = v;
   }

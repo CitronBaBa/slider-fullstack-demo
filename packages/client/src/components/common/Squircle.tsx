@@ -1,29 +1,14 @@
 import { getSvgPath } from 'figma-squircle';
-import React, {
-  HtmlHTMLAttributes,
-  ReactElement,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 export function SquircleMask({
   children,
   className = '',
-  style,
   cornerRadius,
-  cornerSmoothing,
-  hasOutline,
-  dropShadow,
-  outlineColor,
 }: {
   children: React.ReactNode;
   className?: string;
-  style?: HtmlHTMLAttributes<'style'>;
   cornerRadius: number;
-  cornerSmoothing?: number;
-  hasOutline?: boolean;
-  dropShadow?: string;
-  outlineColor?: string;
 }): ReactElement {
   const [buttonRef, setButtonRef] = useState<HTMLDivElement | null>(null);
 
@@ -42,7 +27,7 @@ export function SquircleMask({
         width,
         height,
         cornerRadius,
-        cornerSmoothing: cornerSmoothing || 1, // cornerSmoothing goes from 0 to 1
+        cornerSmoothing: 1, // cornerSmoothing goes from 0 to 1
       });
       setPath(svgPath);
     };
@@ -54,34 +39,17 @@ export function SquircleMask({
     return () => {
       observer.disconnect();
     };
-  }, [buttonRef, cornerRadius, cornerSmoothing, children]);
+  }, [buttonRef, cornerRadius, children]);
 
   return (
     <div
       className={className}
       style={{
-        filter: dropShadow,
         position: 'relative',
-        padding: hasOutline ? '1px' : 0,
+        padding: 0,
         display: 'inline-block',
-        ...style,
       }}
     >
-      {hasOutline && (
-        <div key="outline" className="absolute top-0 bottom-0 left-0 right-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ position: 'absolute', width: '100%', height: '100%' }}
-          >
-            <path
-              d={path}
-              fill="none"
-              stroke={outlineColor}
-              transform="translate(1 1)"
-            />
-          </svg>
-        </div>
-      )}
       <div
         key="content"
         ref={setButtonRef}

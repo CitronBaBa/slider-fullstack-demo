@@ -21,6 +21,7 @@ export const SliderEditor = observer((): ReactElement => {
     if (file) {
       await sliderStore.uploadBgImage(targetSlider.id, targetSlide.id, file);
     }
+    e.target.value = '';
   };
 
   const onCancel = (): void => {

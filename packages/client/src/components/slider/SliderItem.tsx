@@ -4,7 +4,13 @@ import React, { ReactElement } from 'react';
 import { SquircleMask } from '../common/Squircle';
 
 export const SliderItem = observer(
-  ({ slide }: { slide: SliderItemData }): ReactElement => {
+  ({
+    slide,
+    active,
+  }: {
+    slide: SliderItemData;
+    active: boolean;
+  }): ReactElement => {
     return (
       <SquircleMask cornerRadius={24} className="w-full h-full">
         <div
@@ -14,7 +20,9 @@ export const SliderItem = observer(
         gap-8 
       "
           style={{
-            backgroundImage: `url('${slide.backgroundImage?.link || ''}')`,
+            backgroundImage: `url('${
+              (active && slide.backgroundImage?.link) || ''
+            }')`,
           }}
         >
           <div className="text-[40px] leading-[48px] max-w-[408px] font-black">

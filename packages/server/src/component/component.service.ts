@@ -84,11 +84,13 @@ export class ComponentService {
         data: { ...component, data: component.data },
       });
     }) as Promise<Slider>;
+    // TODO remove stale static images if necessary
   };
 
   delete = async (id: string): Promise<void> => {
     await this.prisma.component.delete({
       where: { id },
     });
+    // TODO remove stale static images if necessary
   };
 }

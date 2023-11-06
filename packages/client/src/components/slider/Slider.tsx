@@ -1,7 +1,7 @@
 import { Slider as SliderData } from '@fullstack-demo/domain';
 import { observer } from 'mobx-react-lite';
 import React, { ReactElement, useState } from 'react';
-import { LeftArrowIcon, RightArrowIcon } from '../common/icons';
+import { EditIcon, LeftArrowIcon, RightArrowIcon } from '../common/icons';
 import { uiStateStore } from '../store/UI/UIStateStore';
 import SliderItem from './SliderItem';
 import SliderRadio from './SliderRadio';
@@ -27,7 +27,10 @@ const Slider = observer(({ slider }: { slider: SliderData }): ReactElement => {
   const editBtn = beingEdited ? (
     <></>
   ) : (
-    <div className="absolute left-6 top-6 z-20   invisible group-hover:visible   animate__animated animate__pulse repeat-infinite">
+    <div
+      className="absolute left-6 top-6 z-20  invisible group-hover:visible
+       animate__animated animate__pulse repeat-infinite"
+    >
       <div
         className="btn  btn-accent"
         onClick={() => {
@@ -37,6 +40,7 @@ const Slider = observer(({ slider }: { slider: SliderData }): ReactElement => {
         }}
       >
         Edit Component
+        <EditIcon className="w-7" />
       </div>
     </div>
   );
@@ -59,7 +63,11 @@ const Slider = observer(({ slider }: { slider: SliderData }): ReactElement => {
               transition: 'all 0.7s ease-out',
             }}
           >
-            <SliderItem slide={slide} />
+            <SliderItem
+              slide={slide}
+              // only load neighboring slides
+              active={Math.abs(currentIndex - i) <= 1}
+            />
           </div>
         ))}
 

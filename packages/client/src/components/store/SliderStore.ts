@@ -4,6 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { fetchApi } from '~/api/apiCommon';
 import { createOne, deleteOne, findAll, updateOne } from '~/api/componentApi';
 
+const updateDebounceMs = 500;
+
 class SliderStore {
   sliders: Slider[] = [];
   private updateDebounceTimer?: NodeJS.Timeout;
@@ -44,7 +46,7 @@ class SliderStore {
       } catch (e) {
         console.error(e);
       }
-    }, 500);
+    }, updateDebounceMs);
   }
 
   async delete(id: string) {
