@@ -8,7 +8,7 @@ React project is in src/packages/client
 src/packages/domain contains shared domain objects between the two
 ```
 
-### Project installation
+### How to run it
 
 1. Basic requirements:
 
