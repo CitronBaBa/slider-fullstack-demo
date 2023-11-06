@@ -1,5 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
+/**
+ * Use one theme for demo purpose
+ * It can have a multi theme switcher
+ */
 const enabledDasiyUIThemes = [
   '',
   // 'light',

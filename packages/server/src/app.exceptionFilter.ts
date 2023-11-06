@@ -62,6 +62,7 @@ export class RootExceptionFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
     const { httpAdapter } = this.httpAdapterHost;
     const ctx = host.switchToHttp();
+    // TODO unify these error handling logics in one place
     const responseBody: StandardErrorResponse = {
       statusCode: httpStatusCode,
       timestamp: new Date().toISOString(),
